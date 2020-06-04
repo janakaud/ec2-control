@@ -1,0 +1,269 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "15f485d8-00ac-4680-8459-467c4af205f3": {
+        "id": "15f485d8-00ac-4680-8459-467c4af205f3",
+        "parent": null,
+        "name": "ec2-start.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "ec2-start.js",
+        "cursor": {
+          "lineNumber": 2,
+          "column": 86
+        },
+        "config": {
+          "runtime": "nodejs10.x",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "name": "ec2-start",
+          "description": "starts $EC2_ID instance"
+        },
+        "triggers": [
+          {
+            "resourceName": "apigusEast1ec2Controlstartget",
+            "config": {}
+          }
+        ],
+        "testCases": {
+          "8b176b56-5f74-48fc-aa34-c1186451734a": {
+            "id": "8b176b56-5f74-48fc-aa34-c1186451734a",
+            "name": "start",
+            "functionId": "15f485d8-00ac-4680-8459-467c4af205f3",
+            "event": "{\"queryStringParameters\":{\"token\": \"t\"}}",
+            "eventTemplate": "apigateway-aws-proxy"
+          }
+        },
+        "customSecurityPolicy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Sub": "arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${EC2ID}"
+              },
+              "Action": [
+                "ec2:StartInstances"
+              ]
+            }
+          ]
+        }
+      },
+      "c32f1c72-6e9b-49df-ae33-6b69d89c316b": {
+        "id": "c32f1c72-6e9b-49df-ae33-6b69d89c316b",
+        "parent": null,
+        "name": "util.js",
+        "type": "JS_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "util.js",
+        "cursor": {
+          "lineNumber": 18,
+          "column": 13
+        }
+      },
+      "4bc2b9a4-7e58-407f-b64e-148e17dcce15": {
+        "id": "4bc2b9a4-7e58-407f-b64e-148e17dcce15",
+        "parent": null,
+        "name": "ec2-stop.js",
+        "type": "JS_LAMBDA",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "ec2-stop.js",
+        "cursor": {
+          "lineNumber": 2,
+          "column": 85
+        },
+        "config": {
+          "runtime": "nodejs10.x",
+          "handler": "handler",
+          "timeout": 60,
+          "memory": 128,
+          "layers": [],
+          "name": "ec2-stop",
+          "description": "stops $EC2_ID instance"
+        },
+        "triggers": [
+          {
+            "resourceName": "apigusEast1ec2Controlstopget",
+            "config": {}
+          }
+        ],
+        "testCases": {
+          "d43a6aa5-5ca1-4b29-adca-2a946aa57cf0": {
+            "id": "d43a6aa5-5ca1-4b29-adca-2a946aa57cf0",
+            "name": "stop",
+            "functionId": "4bc2b9a4-7e58-407f-b64e-148e17dcce15",
+            "event": "{\"queryStringParameters\":{\"token\": \"t\"}}",
+            "eventTemplate": "apigateway-aws-proxy"
+          }
+        },
+        "customSecurityPolicy": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Sub": "arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/${EC2ID}"
+              },
+              "Action": [
+                "ec2:StopInstances"
+              ]
+            }
+          ]
+        }
+      },
+      "bfc43956-c430-4d2e-85c1-f7c75bac2d95": {
+        "id": "bfc43956-c430-4d2e-85c1-f7c75bac2d95",
+        "parent": null,
+        "name": "README.md",
+        "type": "MARKDOWN_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "README.md"
+      }
+    },
+    "openFiles": [],
+    "currentFileId": "c32f1c72-6e9b-49df-ae33-6b69d89c316b",
+    "resources": {
+      "apigusEast1ec2Controlstartget": {
+        "name": "apigusEast1ec2Controlstartget",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiType": 1,
+          "apiMode": 0,
+          "apiName": "ec2-control",
+          "endpointType": "EDGE",
+          "resourceMode": 0,
+          "resourceName": "start",
+          "resourcePath": "/start",
+          "restMethod": "GET",
+          "proxyIntegration": true,
+          "enableCORS": false,
+          "stageMode": 0,
+          "stageName": "ec2",
+          "mode": 0
+        }
+      },
+      "apigusEast1ec2Controlstopget": {
+        "name": "apigusEast1ec2Controlstopget",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiType": 1,
+          "apiMode": 0,
+          "apiName": "ec2-control",
+          "endpointType": "EDGE",
+          "resourceMode": 0,
+          "resourceName": "stop",
+          "resourcePath": "/stop",
+          "restMethod": "GET",
+          "proxyIntegration": true,
+          "enableCORS": false,
+          "stageMode": 0,
+          "stageName": "ec2",
+          "mode": 0
+        }
+      }
+    },
+    "customTemplate": {
+      "dialect": "CloudFormation",
+      "definitions": {
+        "Parameters": {
+          "EC2ID": {
+            "Type": "String",
+            "Default": ""
+          },
+          "TOKEN": {
+            "Type": "String",
+            "Default": ""
+          }
+        },
+        "Resources": {
+          "ec2Start": {
+            "Properties": {
+              "Environment": {
+                "Variables": {
+                  "EC2_ID": {
+                    "Ref": "EC2ID"
+                  },
+                  "TOKEN": {
+                    "Ref": "TOKEN"
+                  }
+                }
+              }
+            }
+          },
+          "ec2Stop": {
+            "Properties": {
+              "Environment": {
+                "Variables": {
+                  "EC2_ID": {
+                    "Ref": "EC2ID"
+                  },
+                  "TOKEN": {
+                    "Ref": "TOKEN"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      },
+      {
+        "lambdaId": "all",
+        "varKey": "EC2_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": true
+      },
+      {
+        "lambdaId": "all",
+        "varKey": "TOKEN",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": true
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    }
+  },
+  "PROJECT_META": {
+    "projectName": "ec2-control",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "language": "nodejs",
+    "platformRegions": {},
+    "lastSave": 1591256916660
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "ec2-control",
+      "url": "https://github.com/janakaud/ec2-control"
+    }
+  }
+}
